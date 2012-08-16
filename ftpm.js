@@ -71,8 +71,8 @@ if( process.argv.length > 2 && process.argv[2] !== '-h') {
 
             var showContent = ( process.argv[4] && process.argv[4].match(/(\-(\-)?s(how)?)/i) ),
                 methods = {
-                    css: ['downloadCSS','show'],
-                    dataurl: ['downloadDataUrl','showDataUrl']
+                    css: [ 'downloadCSS' , 'show' ],
+                    dataurl: [ 'downloadDataUrl' , 'showDataUrl' ]
                 };
 
             if ( !showContent ) {
@@ -99,14 +99,14 @@ if( process.argv.length > 2 && process.argv[2] !== '-h') {
 
         } else {
 
-            log.error('Invalid command: ' + action );
+            log.error( 'Invalid command: ' + action );
             evt.emit('showAdvice');
 
         }
 
     } else {
 
-        log.warn(action + ' needs more arguments');
+        log.warn( action + ' needs more arguments' );
         evt.emit('showAdvice');
     }
 
