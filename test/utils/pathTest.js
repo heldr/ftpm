@@ -1,6 +1,7 @@
 var should = require('should')
     OSpath = require('../../lib/utils/path.js'),
-    fs = require('fs');
+    fs = require('fs'),
+    path = require('path');
 
 
 describe('OS Path',function() {
@@ -33,7 +34,10 @@ describe('OS Path',function() {
 
             OSpath.checkFontPath( fakePath , function() {
 
-                fs.exists( fakePath , function(exists) {
+                //for node 0.6
+                var existsHelper = fs.exists || path.exists;
+
+                existsHelper( fakePath , function(exists) {
 
                     exists.should.be.true;
                     fs.rmdirSync(fakePath);
