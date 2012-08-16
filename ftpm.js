@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 /*
  * ftpm - Font Package Manager
  * https://github.com/heldr/ftpm

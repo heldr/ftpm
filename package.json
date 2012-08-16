@@ -1,6 +1,6 @@
 {
   "name": "ftpm",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "ftpm - Font Package Manager",
   "main": "ftpm.js",
   "directories": {
@@ -13,7 +13,7 @@
     "wrench": "*"
   },
   "bin": {
-    "ftpm": "./bin/ftpm"
+    "ftpm": "./ftpm.js"
   },
   "engines": {
     "node": ">=0.6.x"
