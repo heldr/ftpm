@@ -67,4 +67,4 @@ $ fptm datauri magra -s #once you have enough scrollback on your terminal :)
 ```
 
 [nodejs]: http://nodejs.org/download
-[gwebfonts]: http://npmjs.org/
+[gwebfonts]: http://www.google.com/webfonts/
