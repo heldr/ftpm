@@ -1,6 +1,6 @@
 FTPM - Font Package Manager [![Build Status](https://secure.travis-ci.org/heldr/ftpm.png)](http://travis-ci.org/heldr/ftpm)
 ===========================
-Ftpm is a Font manager helper built on top of [Google Web Fonts][gwebfonts] and [Node.js][nodejs]. To install FTPM, just run:
+FTPM is a Font manager helper built on top of [Google Web Fonts][gwebfonts] and [Node.js][nodejs]. To install FTPM, just run:
 
 `npm install -g ftpm` with Root privileges.
 
@@ -18,7 +18,7 @@ $ ftpm install magra
 $ ftpm install "droid sans"
 ```
 
-You can see all ftpm installed fonts just typing
+You can see all FTPM installed fonts just typing
 
 ```CLI
 $ ftpm local
@@ -56,7 +56,7 @@ $ fptm css magra public/css
 
 ### CSS with datauri schema
 
-Some folks prefer to use datauri encoding schema to avoid file request, ftpm gives you a simple way to do it
+Some folks prefer to use datauri encoding schema to avoid file request, FTPM gives you a simple way to do it
 
 ```CLI
 $ ftpm datauri magra
@@ -68,7 +68,7 @@ $ fptm datauri magra public/css
 
 ### Printing CSS @font-face
 
-If you have a single css file for everything, ftpm has options that show css font code
+If you have a single css file for everything, FTPM has options that show css font code
 
 ```CLI
 $ ftpm css magra -s #you can use --show
