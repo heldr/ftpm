@@ -1,6 +1,6 @@
 {
   "name": "ftpm",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "ftpm - Font Package Manager",
   "main": "ftpm.js",
   "directories": {

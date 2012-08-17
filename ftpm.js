@@ -65,14 +65,14 @@ if( process.argv.length > 2 && process.argv[2] !== '-h') {
 
             });
 
-        } else if( action.match(/^(css|dataurl)$/) ) {
+        } else if( action.match(/^(css|datauri)$/) ) {
 
             fontDriver = require( fontDriver + 'cssfont' );
 
             var showContent = ( process.argv[4] && process.argv[4].match(/(\-(\-)?s(how)?)/i) ),
                 methods = {
                     css: [ 'downloadCSS' , 'show' ],
-                    dataurl: [ 'downloadDataUrl' , 'showDataUrl' ]
+                    datauri: [ 'downloadDataUrl' , 'showDataUrl' ]
                 };
 
             if ( !showContent ) {
