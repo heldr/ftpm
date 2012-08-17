@@ -69,74 +69,44 @@ if( process.argv.length > 2 && process.argv[2] !== '-h') {
 
             fontDriver = require( fontDriver + 'cssfont' );
 
-            var showContent = ( process.argv[4] && process.argv[4].match(/(\-(\-)?s(how)?)/i) );
+            var showContent = ( process.argv[4] && process.argv[4].match(/(\-(\-)?s(how)?)/i) ),
+                methods = {
+                    css: [ 'downloadCSS' , 'show' ],
+                    datauri: [ 'downloadDataUrl' , 'showDataUrl' ]
+                };
 
-            switch(action) {
+            if ( !showContent ) {
 
-                case 'css':
+                var output = process.argv[4] || false;
 
-                    if ( !showContent ) {
+                fontDriver[ methods[action][0] ]( fontName , output, function( err , output ) {
 
-                        var output = process.argv[4] || false;
+                    evt.emit( 'checkError' , err );
+                    evt.emit( 'exitMessage' , log.success , action + ' file created: ' + output );
 
-                        fontDriver.downloadCSS( fontName , output, function( err , output ) {
+                });
 
-                            evt.emit( 'checkError' , err );
-                            evt.emit( 'exitMessage' , log.success , action + ' file created: ' + output );
+            } else {
 
-                        });
+                fontDriver[ methods[action][1] ]( fontName , function(err) {
 
-                    } else {
+                    evt.emit( 'checkError' , err );
+                    process.exit();
 
-                        fontDriver.show( fontName , function(err) {
-
-                            evt.emit( 'checkError' , err );
-                            process.exit();
-
-                        });
-
-                    }
-
-                break;
-
-                case 'datauri':
-
-                    if ( !showContent ) {
-
-                        var output = process.argv[4] || false;
-
-                        fontDriver.downloadDataUrl( fontName , output, function( err, output ) {
-
-                            evt.emit( 'checkError' , err );
-                            evt.emit( 'exitMessage' , log.success , action + ' file created: ' + output );
-
-                        });
-
-                    } else {
-
-                        fontDriver.showDataUrl( fontName , function(err) {
-
-                            evt.emit( 'checkError' , err );
-                            process.exit();
-
-                        });
-
-                    }
-
-                break;
+                });
 
             }
 
         } else {
 
-            log.error('Invalid command: ' + action );
+            log.error( 'Invalid command: ' + action );
             evt.emit('showAdvice');
 
         }
 
     } else {
 
-        log.warn(action + ' needs more arguments');
+        log.warn( action + ' needs more arguments' );
         evt.emit('showAdvice');
     }
 
