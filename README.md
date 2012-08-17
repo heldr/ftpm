@@ -8,7 +8,9 @@ HOW TO USE
 ----------
 FTPM allows you to manage system fonts (.ttf). You can also generate web font files(.woff), CSS from google and CSS with datauri code schema. Those helpers works perfect with Mac and Linux. (Windows maybe soon).
 
-To install a system font:
+### System font
+
+FTPM would install a True Type font inside your User font path
 
 ```CLI
 $ ftpm install magra
@@ -28,6 +30,8 @@ And uninstall it
 $ ftpm uninstall "droid sans"
 ```
 
+### Web font file
+
 If want to host a web font files (.woff) without need an Google request, just use:
 
 ```CLI
@@ -37,6 +41,8 @@ with output path
 ```CLI
 $ fptm web magra public/font
 ```
+
+### CSS @font-face file
 
 You can generate the traditional Google web font CSS
 
@@ -48,6 +54,8 @@ with output path
 $ fptm css magra public/css
 ```
 
+### CSS with datauri schema
+
 Some folks prefer to use datauri encoding schema to avoid file request, ftpm gives you a simple way to do it
 
 ```CLI
@@ -58,6 +66,8 @@ with output path
 $ fptm datauri magra public/css
 ```
 
+### Printing CSS @font-face
+
 If you have a single css file for everything, ftpm has options that show css font code
 
 ```CLI
@@ -66,5 +76,30 @@ $ ftpm css magra -s #you can use --show
 $ fptm datauri magra -s #once you have enough scrollback on your terminal :)
 ```
 
+DEVELOPING
+----------
+FTPM uses [Grunt][grunt] with JSHint and [Mocha Test Framework][mocha].
+
+Inside FTPM base files directory you should run:
+
+```CLI
+$ npm install
+$ make
+```
+
+You can run separated tasks
+
+```CLI
+$ make lint
+$ make test
+```
+
+## License
+
+MIT License
+(c) [Helder Santana](http://heldr.com)
+
 [nodejs]: http://nodejs.org/download
 [gwebfonts]: http://www.google.com/webfonts/
+[grunt]: https://github.com/cowboy/grunt
+[mocha]: http://visionmedia.github.com/mocha/
