@@ -291,7 +291,7 @@ describe('FTPM Client', function() {
 
                     it('should download', function(done) {
 
-                        execute( cli + 'dataurl magra ' + cssPath , function( err, stdout ) {
+                        execute( cli + 'datauri magra ' + cssPath , function( err, stdout ) {
 
                             should.not.exist(err);
                             stdout.should.not.be.empty;
@@ -327,7 +327,7 @@ describe('FTPM Client', function() {
 
                     it('should download', function(done) {
 
-                        execute( cli + 'dataurl magra' , function( err, stdout ) {
+                        execute( cli + 'datauri magra' , function( err, stdout ) {
 
                             should.not.exist(err);
                             stdout.should.not.be.empty;
@@ -378,7 +378,7 @@ describe('FTPM Client', function() {
 
                 it('should show css with data url', function(done) {
 
-                    execute( cli + 'dataurl magra -s' , function( err, stdout ) {
+                    execute( cli + 'datauri magra -s' , function( err, stdout ) {
 
                         should.not.exist(err);
                         stdout.should.match(/(\@font\-face)/g);
@@ -409,7 +409,7 @@ describe('FTPM Client', function() {
 
                 it('should show css with data url', function(done) {
 
-                    execute( cli + 'dataurl magra --show' , function( err, stdout ) {
+                    execute( cli + 'datauri magra --show' , function( err, stdout ) {
 
                         should.not.exist(err);
                         stdout.should.match(/(\@font\-face)/g);

@@ -65,7 +65,7 @@ if( process.argv.length > 2 && process.argv[2] !== '-h') {
 
             });
 
-        } else if( action.match(/^(css|dataurl)$/) ) {
+        } else if( action.match(/^(css|datauri)$/) ) {
 
             fontDriver = require( fontDriver + 'cssfont' );
 
@@ -99,7 +99,7 @@ if( process.argv.length > 2 && process.argv[2] !== '-h') {
 
                 break;
 
-                case 'dataurl':
+                case 'datauri':
 
                     if ( !showContent ) {
 
