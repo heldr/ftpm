@@ -16,6 +16,10 @@ FTPM would install a True Type font into your User font path
 $ ftpm install magra
 
 $ ftpm install "droid sans"
+
+$ ftpm install "quantico:700italic"
+
+$ ftpm install "quantico:400,400italic,700italic"
 ```
 
 You can see all FTPM installed fonts just typing
