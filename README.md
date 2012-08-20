@@ -10,7 +10,7 @@ FTPM allows you to manage system fonts (.ttf). You can also generate web font fi
 
 ### System font
 
-FTPM would install a True Type font inside your User font path
+FTPM would install a True Type font into your User font path
 
 ```CLI
 $ ftpm install magra
@@ -80,7 +80,7 @@ DEVELOPING
 ----------
 FTPM uses [Grunt][grunt] with JSHint and [Mocha Test Framework][mocha].
 
-Inside FTPM base files directory you should run:
+Into FTPM base files directory you should run:
 
 ```CLI
 $ npm install
