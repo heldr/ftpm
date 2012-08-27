@@ -1,7 +1,8 @@
 var should = require('should'),
     fs = require('fs'),
     pathHelper = require('../lib/utils/path'),
-    execute = require('child_process').exec,
+    child = require('child_process'),
+    execute = child.exec,
     cli = './bin/ftpm ';
 
 describe('FTPM Client', function() {
@@ -12,7 +13,7 @@ describe('FTPM Client', function() {
 
         before(function(){
 
-            expected = new RegExp('FTPM - Font Package Manager');
+            expected = new RegExp('Examples:');
 
         });
 
@@ -89,11 +90,12 @@ describe('FTPM Client', function() {
 
         });
 
-        it('should uninstall' , function(done){
+        it('should uninstall' , function(done) {
 
-            execute( cli + 'uninstall magra' , function( err, stdout ) {
+            execute( cli + 'uninstall magra -f' , function( err, stdout ) {
 
                 should.not.exist(err);
+                console.log(stdout);
                 stdout.should.not.be.empty;
 
                 done();

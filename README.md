@@ -98,6 +98,8 @@ $ make lint
 $ make test
 ```
 
+Note: Pull requests are only accepted on development branch
+
 ## License
 
 MIT License

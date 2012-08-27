@@ -10,108 +10,164 @@
 
 'use strict';
 
-var ftpm   = require('./lib/ftpm'),
-    log    = require('./lib/utils/log'),
-    events = require('events'),
-    evt    = new events.EventEmitter();
+var ftpm = require('./lib/ftpm'),
+    fontDriver = './lib/controller/',
+    showContent = false,
+    force = false;
 
+ftpm.on('exitMessage', function( log , msg ) {
 
-evt.on('exitMessage', function( log , msg ) {
     log(msg);
     process.exit();
+
 });
 
-evt.on('showAdvice', function() {
-    evt.emit( 'exitMessage' , log.info , 'Type ftpm -h to get some help :)' );
+ftpm.on('exitWithAdvice', function( text ) {
+
+    ftpm.log.warn( text );
+    ftpm.emit( 'exitMessage' , ftpm.log.info , 'Type ftpm -h to get some help :)' );
+
 });
 
-evt.on('checkError', function(err) {
+ftpm.on('checkError', function(err) {
+
     if (err) {
-        log.error('Unexpected error:');
-        evt.emit( 'exitMessage' , log.error , err );
+        ftpm.log.error('Unexpected error:');
+        ftpm.emit( 'exitMessage' , ftpm.log.error , err );
     }
+
 });
 
-if( process.argv.length > 2 && process.argv[2] !== '-h') {
+ftpm.on('osfont', function( action , fontName ) {
+
+    fontDriver[action]( fontName , function( err , results ) {
+
+        ftpm.emit( 'checkError' , err );
+
+        if(fontName) {
+            ftpm.emit( 'exitMessage' , ftpm.log.success , fontName + ' Font was successfully ' + action + 'ed' );
+        } else if(results) {
+            ftpm.emit( 'exitMessage' , ftpm.log.info , '\n' + results );
+        }
+
+    });
+
+});
+
+ftpm.on('webfont', function( action , fontName ) {
+
+    fontDriver.download( fontName , process.argv[4] , function( err , output ){
+
+        ftpm.emit( 'checkError' , err );
+        ftpm.emit( 'exitMessage' , ftpm.log.success , 'new webfont: ' + output );
+
+    });
+
+});
+
+ftpm.on('cssfont', function( action , fontName ) {
+
+    var methods = {
+            css: [ 'downloadCSS' , 'show' ],
+            datauri: [ 'downloadDataUrl' , 'showDataUrl' ]
+        };
+
+    if ( !showContent ) {
+
+        var output = process.argv[4] || false;
+
+        fontDriver[ methods[action][0] ]( fontName , output, function( err , output ) {
+
+            ftpm.emit( 'checkError' , err );
+            ftpm.emit( 'exitMessage' , ftpm.log.success , action + ' file created: ' + output );
+
+        });
+
+    } else {
+
+        fontDriver[ methods[action][1] ]( fontName , function(err) {
+
+            ftpm.emit( 'checkError' , err );
+            process.exit();
+
+        });
+
+    }
+
+});
+
+ftpm.on('runDriver', function( driverName , action , fontName ) {
+
+    fontDriver = require( fontDriver + driverName );
+    ftpm.emit( driverName , action , fontName );
+
+});
+
+// options
+ftpm.cli.version( ftpm.name )
+    .usage('[action] [font name] [output] [options]')
+    .option('-s, --show', 'show css font content when "ftpm css" or "ftpm datauri"')
+    .option('-f, --force', 'force system font uninstall without message');
+
+ftpm.cli.on('--help', function() {
+    ftpm.emit( 'exitMessage' , ftpm.log.info , ftpm.help() );
+});
+
+ftpm.cli.on('show', function() {
+    showContent = true;
+});
+
+ftpm.cli.on('force', function() {
+    force = true;
+});
+
+if( process.argv.length > 2 ) {
+
+    ftpm.cli.parse( process.argv );
 
     var action = process.argv[2],
-        fontName = process.argv[3],
-        fontDriver = './lib/controller/';
+        fontName = process.argv[3];
 
     if ( fontName || action === 'local' ) {
 
-        if( action.match(/^((un)?install|local)$/) ) {
+        switch ( action ) {
 
-            fontDriver = require( fontDriver + 'osfont' );
+            case 'install':
+            case 'local':
+                ftpm.emit( 'runDriver' , 'osfont' , action , fontName );
+            break;
 
-            fontDriver[action]( fontName , function( err , results ) {
-
-                evt.emit( 'checkError' , err );
-
-                if(fontName) {
-                    evt.emit( 'exitMessage' , log.success , fontName + ' Font was successfully ' + action + 'ed' );
-                } else if(results) {
-                    evt.emit( 'exitMessage' , log.info , '\n' + results );
+            case 'uninstall':
+                if (!force) {
+                    ftpm.cli.confirm('Are you sure to uninstall ' + fontName + ' ? (Y/N) ', function(ok) {
+                        if (ok) {
+                            ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
+                        }
+                    });
+                } else {
+                    ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
                 }
+            break;
 
-            });
+            case 'web':
+                ftpm.emit( 'runDriver' , 'webfont' , action , fontName );
+            break;
 
-        } else if( action === 'web' ) {
+            case 'css':
+            case 'datauri':
+                ftpm.emit( 'runDriver' , 'cssfont' , action , fontName );
+            break;
 
-            fontDriver = require( fontDriver + 'webfont' );
-
-            fontDriver.download( fontName , process.argv[4] , function( err , output ){
-
-                evt.emit( 'checkError' , err );
-                evt.emit( 'exitMessage' , log.success , 'new webfont: ' + output );
-
-            });
-
-        } else if( action.match(/^(css|datauri)$/) ) {
-
-            fontDriver = require( fontDriver + 'cssfont' );
-
-            var showContent = ( process.argv[4] && process.argv[4].match(/(\-(\-)?s(how)?)/i) ),
-                methods = {
-                    css: [ 'downloadCSS' , 'show' ],
-                    datauri: [ 'downloadDataUrl' , 'showDataUrl' ]
-                };
-
-            if ( !showContent ) {
-
-                var output = process.argv[4] || false;
-
-                fontDriver[ methods[action][0] ]( fontName , output, function( err , output ) {
-
-                    evt.emit( 'checkError' , err );
-                    evt.emit( 'exitMessage' , log.success , action + ' file created: ' + output );
-
-                });
-
-            } else {
-
-                fontDriver[ methods[action][1] ]( fontName , function(err) {
-
-                    evt.emit( 'checkError' , err );
-                    process.exit();
-
-                });
-
-            }
-
-        } else {
-
-            log.error( 'Invalid command: ' + action );
-            evt.emit('showAdvice');
+            default:
+                ftpm.emit( 'exitWithAdvice' , 'Invalid command: ' + action );
+            break;
 
         }
 
     } else {
-
-        log.warn( action + ' needs more arguments' );
-        evt.emit('showAdvice');
+        ftpm.emit('exitWithAdvice', action + ' needs more arguments' );
     }
 
 } else {
-    evt.emit( 'exitMessage' , log.info , ftpm.help() );
+    ftpm.cli.emit('--help');
 }
