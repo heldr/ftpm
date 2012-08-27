@@ -24,7 +24,8 @@ module.exports = function( grunt ) {
                 strict: false,
                 trailing: true,
                 smarttabs: true,
-                node: true
+                node: true,
+                globalstrict: true
             }
         }
     });
