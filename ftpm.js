@@ -8,6 +8,8 @@
  * https://raw.github.com/heldr/ftpm/master/MIT-LICENSE.txt
  */
 
+'use strict';
+
 var ftpm   = require('./lib/ftpm'),
     log    = require('./lib/utils/log'),
     events = require('events'),
