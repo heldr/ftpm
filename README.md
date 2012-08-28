@@ -6,9 +6,9 @@ FTPM is a Font helper built on top of [Google Web Fonts][gwebfonts] and [Node.js
 
 HOW TO USE
 ----------
-FTPM allows you to manage system fonts (.ttf). You can also generate web font files(.woff), CSS from google and CSS with datauri code schema. Those helpers works perfect with Mac and Linux. (Windows maybe soon).
+FTPM allows you to manage system fonts (.ttf). You can also generate web font files(.woff), CSS from google and CSS with datauri code schema.
 
-### System font
+### System font (for Mac and Linux ... Windows maybe soon)
 
 FTPM would install a True Type font into your User font path
 
