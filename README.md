@@ -87,7 +87,7 @@ FTPM uses [Grunt][grunt] with JSHint and [Mocha Test Framework][mocha].
 Into FTPM base files directory you should run:
 
 ```CLI
-$ git cleckout development
+$ git checkout development
 $ npm install
 $ make
 ```
