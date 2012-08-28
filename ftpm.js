@@ -142,6 +142,8 @@ if( process.argv.length > 2 ) {
                     ftpm.cli.confirm('Are you sure to uninstall ' + fontName + ' ? (Y/N) ', function(ok) {
                         if (ok) {
                             ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
+                        } else {
+                            process.exit();
                         }
                     });
                 } else {

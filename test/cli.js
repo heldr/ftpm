@@ -90,12 +90,11 @@ describe('FTPM Client', function() {
 
         });
 
-        it('should uninstall' , function(done) {
+        it('should force uninstall' , function(done) {
 
             execute( cli + 'uninstall magra -f' , function( err, stdout ) {
 
                 should.not.exist(err);
-                console.log(stdout);
                 stdout.should.not.be.empty;
 
                 done();
