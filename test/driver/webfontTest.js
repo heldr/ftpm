@@ -1,5 +1,5 @@
 var should = require('should'),
-    WebFont = require('../../lib/controller/webfont.js'),
+    WebFont = require('../../lib/driver/webfont.js'),
     fs = require('fs');
 
 describe('WebFont object', function() {

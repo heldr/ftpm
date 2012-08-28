@@ -1,5 +1,5 @@
 var should = require('should'),
-    OsFont = require('../../lib/controller/osfont.js'),
+    OsFont = require('../../lib/driver/osfont.js'),
     fs = require('fs');
 
 describe('OSFont Object', function(){

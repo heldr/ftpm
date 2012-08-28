@@ -11,7 +11,7 @@
 'use strict';
 
 var ftpm = require('./lib/ftpm'),
-    fontDriver = './lib/controller/',
+    fontDriver = './lib/driver/',
     showContent = false,
     force = false;
 

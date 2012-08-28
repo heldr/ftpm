@@ -1,5 +1,5 @@
 var should = require('should'),
-    CssFont = require('../../lib/controller/cssfont.js'),
+    CssFont = require('../../lib/driver/cssfont.js'),
     fs = require('fs');
 
 describe('CssFont object', function() {
