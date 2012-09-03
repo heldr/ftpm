@@ -23,10 +23,11 @@
   "devDependencies": {
     "mocha": "*",
     "should": "*",
-    "grunt": "*"
+    "grunt": "*",
+    "grunt-simple-mocha": "*"
   },
   "scripts": {
-    "test": "make test"
+    "test": "./node_modules/.bin/grunt"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,7 @@
 module.exports = function( grunt ) {
 
     grunt.initConfig({
+
         lint: {
             files: [
                 'grunt.js',
@@ -8,6 +9,20 @@ module.exports = function( grunt ) {
                 'lib/**/*.js'
             ]
         },
+
+        mocha: {
+            all: {
+                src: 'test/**/*.js',
+                options: {
+                    globals: ['should'],
+                    timeout: 10000,
+                    ignoreLeaks: false,
+                    ui: 'bdd',
+                    reporter: 'spec'
+                }
+            }
+        },
+
         jshint: {
             options: {
                 es5: true,
@@ -28,8 +43,11 @@ module.exports = function( grunt ) {
                 globalstrict: true
             }
         }
+
     });
 
-    grunt.registerTask( 'default', 'lint' );
+    grunt.loadNpmTasks('grunt-simple-mocha');
+
+    grunt.registerTask( 'default', 'lint mocha' );
 
 };
