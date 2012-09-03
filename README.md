@@ -39,7 +39,7 @@ $ ftpm web magra
 ```
 with output path
 ```CLI
-$ fptm web magra public/font
+$ ftpm web magra public/font
 ```
 
 ### CSS @font-face file
@@ -55,7 +55,7 @@ $ ftpm css "quantico:400,400italic,700italic"
 ```
 with output path
 ```CLI
-$ fptm css magra public/css
+$ ftpm css magra public/css
 ```
 
 ### CSS with datauri schema
@@ -67,7 +67,7 @@ $ ftpm datauri magra
 ```
 with output path
 ```CLI
-$ fptm datauri magra public/css
+$ ftpm datauri magra public/css
 ```
 
 ### Printing CSS @font-face
@@ -77,7 +77,7 @@ If you have a single css file for everything, FTPM has options that show css fon
 ```CLI
 $ ftpm css magra -s #you can use --show
 
-$ fptm datauri magra -s #once you have enough scrollback on your terminal :)
+$ ftpm datauri magra -s #once you have enough scrollback on your terminal :)
 ```
 
 DEVELOPING
