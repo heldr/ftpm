@@ -89,14 +89,14 @@ Into FTPM base files directory you should run:
 ```CLI
 $ git checkout development
 $ npm install
-$ make
+$ npm test
 ```
 
 You can run separated tasks
 
 ```CLI
-$ make lint
-$ make test
+$ grunt lint
+$ grunt mocha
 ```
 
 Note: Pull requests are only accepted on development branch
