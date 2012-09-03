@@ -24,21 +24,25 @@ ftpm.on('exitMessage', function( log , msg ) {
 
 ftpm.on('exitWithAdvice', function( text ) {
 
-    ftpm.log.warn( text );
-    ftpm.emit( 'exitMessage' , ftpm.log.info , 'Type ftpm -h to get some help :)' );
+    this.log.warn( text );
+    this.emit( 'exitMessage' , this.log.info , 'Type ftpm -h to get some help :)' );
 
 });
 
 ftpm.on('checkError', function(err) {
 
     if (err) {
-        ftpm.log.error('Unexpected error:');
-        ftpm.emit( 'exitMessage' , ftpm.log.error , err );
+        this.log.error('Unexpected error:');
+        this.emit( 'exitMessage' , ftpm.log.error , err );
     }
 
 });
 
 ftpm.on('osfont', function( action , fontName ) {
+
+    if (this.platform === 'win32') {
+        this.emit('warning', action  + ' is not available for Windows');
+    }
 
     fontDriver[action]( fontName , function( err , results ) {
 
@@ -99,7 +103,7 @@ ftpm.on('cssfont', function( action , fontName ) {
 ftpm.on('runDriver', function( driverName , action , fontName ) {
 
     fontDriver = require( fontDriver + driverName );
-    ftpm.emit( driverName , action , fontName );
+    this.emit( driverName , action , fontName );
 
 });
 
