@@ -1,6 +1,7 @@
 var should = require('should'),
     WebFont = require('../../lib/driver/webfont.js'),
-    fs = require('fs');
+    fs = require('fs'),
+    wrench = require('wrench');
 
 describe('WebFont object', function() {
 
@@ -13,9 +14,7 @@ describe('WebFont object', function() {
         describe('with a single word for Font name', function() {
 
             after( function(done) {
-                fs.unlink( fullPath , function() {
-                    fs.rmdir( fontPath , done );
-                });
+                wrench.rmdirRecursive( fontPath , done );
             });
 
             it('should download a web font', function(done) {
@@ -33,7 +32,7 @@ describe('WebFont object', function() {
 
             });
 
-            it('should read the font file', function(done) {
+            it('should read the downloaded web font file', function(done) {
 
                 fs.readFile( fullPath , function(err) {
                     should.not.exist(err);
@@ -41,6 +40,41 @@ describe('WebFont object', function() {
                 });
 
             });
+
+            // it('should download crossbrowser fonts #crossbrowser', function(done) {
+
+            //     WebFont.downloadCrossBrowser( fontName , fontPath , function( err , output ) {
+            //         should.not.exist(err);
+
+            //         var rgp = new RegExp(fontPath);
+            //         output.should.match(rgp);
+            //         output.should.match(/\.ttf$/);
+
+            //         fullPath = output;
+            //         done();
+            //     });
+
+            // });
+
+            // it('should read the the files css, eot, woff, svg and ttf #crossbrowser', function(done) {
+
+            //     fs.readdir( fontPath , function( err , files ) {
+            //         should.not.exist(err);
+
+            //         files.should.not.be.empty;
+
+            //         var filesStr = files.join('');
+            //         filesStr.should.match(/\.ttf/);
+            //         filesStr.should.match(/\.eot/);
+            //         filesStr.should.match(/\.woff/);
+            //         filesStr.should.match(/\.svg/);
+            //         filesStr.should.match(/\.css/);
+
+            //         done();
+
+            //     });
+
+            // });
 
         });
 
@@ -51,9 +85,7 @@ describe('WebFont object', function() {
             });
 
             after( function(done) {
-                fs.unlink( fullPath , function() {
-                    fs.rmdir( fontPath , done );
-                });
+                wrench.rmdirRecursive( fontPath , done );
             });
 
             it('should download a web font', function(done) {

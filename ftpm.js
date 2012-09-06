@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /*
- * ftpm - Font Package Manager
- * https://github.com/heldr/ftpm
+ * FTPM - Font Package Manager
+ * http://heldr.github.com/ftpm
  *
  * Copyright (c) 2012 Helder Santana
  * Licensed under the MIT license.
