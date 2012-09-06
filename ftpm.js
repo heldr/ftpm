@@ -11,9 +11,7 @@
 'use strict';
 
 var ftpm = require('./lib/ftpm'),
-    fontDriver = './lib/driver/',
-    showContent = false,
-    force = false;
+    fontDriver = './lib/driver/';
 
 ftpm.on('exitMessage', function( log , msg ) {
 
@@ -76,7 +74,7 @@ ftpm.on('cssfont', function( action , fontName ) {
             datauri: [ 'downloadDataUrl' , 'showDataUrl' ]
         };
 
-    if ( !showContent ) {
+    if ( !ftpm.show ) {
 
         var output = process.argv[4] || false;
 
@@ -118,11 +116,11 @@ ftpm.cli.on('--help', function() {
 });
 
 ftpm.cli.on('show', function() {
-    showContent = true;
+    ftpm.show = true;
 });
 
 ftpm.cli.on('force', function() {
-    force = true;
+    ftpm.force = true;
 });
 
 if( process.argv.length > 2 ) {
@@ -138,21 +136,8 @@ if( process.argv.length > 2 ) {
 
             case 'install':
             case 'local':
-                ftpm.emit( 'runDriver' , 'osfont' , action , fontName );
-            break;
-
             case 'uninstall':
-                if (!force) {
-                    ftpm.cli.confirm('Are you sure to uninstall ' + fontName + ' ? (Y/N) ', function(ok) {
-                        if (ok) {
-                            ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
-                        } else {
-                            process.exit();
-                        }
-                    });
-                } else {
-                    ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
-                }
+                ftpm.emit( 'runDriver' , 'osfont' , action , fontName );
             break;
 
             case 'web':
