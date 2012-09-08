@@ -92,7 +92,7 @@ $ npm install
 $ npm test
 ```
 
-You can run separated tasks
+You can run separated tasks:
 
 ```CLI
 $ grunt lint
