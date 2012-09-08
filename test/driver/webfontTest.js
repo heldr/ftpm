@@ -41,40 +41,40 @@ describe('WebFont object', function() {
 
             });
 
-            // it('should download crossbrowser fonts #crossbrowser', function(done) {
+            it('should download crossbrowser fonts #crossbrowser', function(done) {
 
-            //     WebFont.downloadCrossBrowser( fontName , fontPath , function( err , output ) {
-            //         should.not.exist(err);
+                WebFont.downloadCrossBrowser( fontName , fontPath , function( err , output ) {
+                    should.not.exist(err);
 
-            //         var rgp = new RegExp(fontPath);
-            //         output.should.match(rgp);
-            //         output.should.match(/\.ttf$/);
+                    var rgp = new RegExp(fontPath);
+                    output.should.match(rgp);
+                    output.should.match(/\.woff$/);
 
-            //         fullPath = output;
-            //         done();
-            //     });
+                    fullPath = output;
+                    done();
+                });
 
-            // });
+            });
 
-            // it('should read the the files css, eot, woff, svg and ttf #crossbrowser', function(done) {
+            it('should read the the files css, eot, woff, svg and ttf #crossbrowser', function(done) {
 
-            //     fs.readdir( fontPath , function( err , files ) {
-            //         should.not.exist(err);
+                fs.readdir( fontPath , function( err , files ) {
+                    should.not.exist(err);
 
-            //         files.should.not.be.empty;
+                    files.should.not.be.empty;
 
-            //         var filesStr = files.join('');
-            //         filesStr.should.match(/\.ttf/);
-            //         filesStr.should.match(/\.eot/);
-            //         filesStr.should.match(/\.woff/);
-            //         filesStr.should.match(/\.svg/);
-            //         filesStr.should.match(/\.css/);
+                    var filesStr = files.join('');
+                    filesStr.should.match(/\.ttf/);
+                    filesStr.should.match(/\.eot/);
+                    filesStr.should.match(/\.woff/);
+                    filesStr.should.match(/\.svg/);
+                    //filesStr.should.match(/\.css/);
 
-            //         done();
+                    done();
 
-            //     });
+                });
 
-            // });
+            });
 
         });
 

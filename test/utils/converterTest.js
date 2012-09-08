@@ -40,23 +40,6 @@ describe('Font converter', function() {
 
     });
 
-    describe('should convert ttf to woff', function() {
-
-        after(function(done) {
-            file.unlink( font.woff , done );
-        });
-
-        it('should run the woff converter', function(done) {
-            converter.ttf2woff( font.ttf , done );
-        });
-
-        it('should exist the woff file', function(done) {
-            file.readFile( font.woff , done );
-        });
-
-    });
-
-
     describe('should convert ttf to eot', function() {
 
         after(function(done) {
