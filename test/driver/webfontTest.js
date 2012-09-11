@@ -41,22 +41,7 @@ describe('WebFont object', function() {
 
             });
 
-            it('should download crossbrowser fonts #crossbrowser', function(done) {
-
-                WebFont.downloadCrossBrowser( fontName , fontPath , function( err , output ) {
-                    should.not.exist(err);
-
-                    var rgp = new RegExp(fontPath);
-                    output.should.match(rgp);
-                    output.should.match(/\.woff$/);
-
-                    fullPath = output;
-                    done();
-                });
-
-            });
-
-            it('should read the the files css, eot, woff, svg and ttf #crossbrowser', function(done) {
+            it('should read the the files css, eot, woff, svg and ttf', function(done) {
 
                 fs.readdir( fontPath , function( err , files ) {
                     should.not.exist(err);
@@ -68,7 +53,7 @@ describe('WebFont object', function() {
                     filesStr.should.match(/\.eot/);
                     filesStr.should.match(/\.woff/);
                     filesStr.should.match(/\.svg/);
-                    //filesStr.should.match(/\.css/);
+                    filesStr.should.match(/\.css/);
 
                     done();
 
@@ -112,6 +97,26 @@ describe('WebFont object', function() {
 
             });
 
+            it('should read the the files css, eot, woff, svg and ttf', function(done) {
+
+                fs.readdir( fontPath , function( err , files ) {
+                    should.not.exist(err);
+
+                    files.should.not.be.empty;
+
+                    var filesStr = files.join('');
+                    filesStr.should.match(/\.ttf/);
+                    filesStr.should.match(/\.eot/);
+                    filesStr.should.match(/\.woff/);
+                    filesStr.should.match(/\.svg/);
+                    filesStr.should.match(/\.css/);
+
+                    done();
+
+                });
+
+            });
+
         });
 
     });
@@ -150,6 +155,26 @@ describe('WebFont object', function() {
 
             });
 
+            it('should read the the files css, eot, woff, svg and ttf', function(done) {
+
+                fs.readdir( '.' , function( err , files ) {
+                    should.not.exist(err);
+
+                    files.should.not.be.empty;
+
+                    var filesStr = files.join('');
+                    filesStr.should.match(/\.ttf/);
+                    filesStr.should.match(/\.eot/);
+                    filesStr.should.match(/\.woff/);
+                    filesStr.should.match(/\.svg/);
+                    filesStr.should.match(/\.css/);
+
+                    done();
+
+                });
+
+            });
+
         });
 
         describe('with multiple words for Font name', function() {
@@ -180,6 +205,26 @@ describe('WebFont object', function() {
                 fs.readFile( fullPath , function(err) {
                     should.not.exist(err);
                     done();
+                });
+
+            });
+
+            it('should read the the files css, eot, woff, svg and ttf', function(done) {
+
+                fs.readdir( '.' , function( err , files ) {
+                    should.not.exist(err);
+
+                    files.should.not.be.empty;
+
+                    var filesStr = files.join('');
+                    filesStr.should.match(/\.ttf/);
+                    filesStr.should.match(/\.eot/);
+                    filesStr.should.match(/\.woff/);
+                    filesStr.should.match(/\.svg/);
+                    filesStr.should.match(/\.css/);
+
+                    done();
+
                 });
 
             });
