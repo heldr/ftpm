@@ -155,7 +155,7 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should download a eot file', function(done){
+            it('should create a eot file', function(done){
 
                 fs.readFile( fontPath + '/' + fontFile.replace( /\.woff$/g , '.eot' ) , 'binary', function( err , content ) {
 
@@ -168,7 +168,7 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should be created a css file', function(done) {
+            it('should create a css file', function(done) {
 
                 fs.readFile( fontPath + '/' + fontFile.replace( /\.woff$/g , '.css' ) , 'utf8', function( err , content ) {
 
@@ -182,7 +182,7 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should be created a svg file', function(done) {
+            it('should create a svg file', function(done) {
 
                 fs.readFile( fontPath + '/' + fontFile.replace( /\.woff$/g , '.svg' ) , 'utf8', function( err , content ) {
 
@@ -249,7 +249,7 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should be created a css file', function(done) {
+            it('should create a css file', function(done) {
 
                 fs.readFile( fontFile.replace( /\.woff$/g , '.css' ) , 'utf8', function( err , content ) {
 
@@ -263,7 +263,7 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should be created a svg file', function(done) {
+            it('should create a svg file', function(done) {
 
                 fs.readFile( fontFile.replace( /\.woff$/g , '.svg' ) , 'utf8', function( err , content ) {
 
