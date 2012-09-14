@@ -130,7 +130,11 @@ describe('WebFont object', function() {
         describe('with a single word for Font name', function() {
 
             after( function(done) {
-                fs.unlink( fullPath , done );
+                fs.unlinkSync( 'Magra.ttf' );
+                fs.unlinkSync( 'Magra.eot' );
+                fs.unlinkSync( 'Magra.svg' );
+                fs.unlinkSync( 'Magra.css' );
+                fs.unlink( 'Magra.woff' , done );
             });
 
             it('should download a web font', function(done) {
@@ -184,7 +188,11 @@ describe('WebFont object', function() {
             });
 
             after( function(done) {
-                fs.unlink( fullPath , done );
+                fs.unlinkSync( 'DroidSans.ttf' );
+                fs.unlinkSync( 'DroidSans.eot' );
+                fs.unlinkSync( 'DroidSans.svg' );
+                fs.unlinkSync( 'DroidSans.css' );
+                fs.unlink( 'DroidSans.woff' , done );
             });
 
             it('should download a web font', function(done) {
