@@ -1,4 +1,4 @@
-FTPM - Font Package Manager [![Build Status](https://secure.travis-ci.org/heldr/ftpm.png)](http://travis-ci.org/heldr/ftpm)
+FTPM - Font Package Manager [![Build Status](https://secure.travis-ci.org/heldr/ftpm.png?branch=master)](http://travis-ci.org/heldr/ftpm?branch=master)
 ===========================
 FTPM is a Font helper built on top of [Google Web Fonts][gwebfonts] and [Node.js][nodejs]. To install FTPM, just run:
 
@@ -92,7 +92,7 @@ $ npm install
 $ npm test
 ```
 
-You can run separated tasks
+You can run separated tasks:
 
 ```CLI
 $ grunt lint
