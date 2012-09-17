@@ -88,8 +88,8 @@ Into FTPM base files directory you should run:
 
 ```CLI
 $ git checkout development
-$ npm install
-$ npm test
+$ make install
+$ make test
 ```
 
 You can run separated tasks:
