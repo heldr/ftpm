@@ -4,7 +4,7 @@ NPM           = npm
 GRUNT         = node_modules/grunt/bin/grunt
 
 install:
-	$(NPM) install $(INSTALL_FLAGS) ftpm
+	$(NPM) install
 
 test:
 	@echo "Running test suite..."
