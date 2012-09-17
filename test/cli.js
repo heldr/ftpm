@@ -3,6 +3,7 @@ var should = require('should'),
     pathHelper = require('../lib/utils/path'),
     child = require('child_process'),
     execute = child.exec,
+    wrench = require('wrench'),
     cli = './bin/ftpm ';
 
 describe('FTPM Client', function() {
@@ -125,9 +126,7 @@ describe('FTPM Client', function() {
                 fontFile = 'Magra.woff';
 
             after(function(done) {
-                fs.unlink( fontPath + '/' + fontFile , function() {
-                    fs.rmdir( fontPath , done );
-                });
+                wrench.rmdirRecursive( fontPath , done );
             });
 
             it('should download', function(done) {
@@ -143,12 +142,53 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should exist the downloaded file', function(done){
+            it('should download a woff file', function(done){
 
                 fs.readFile( fontPath + '/' + fontFile , 'binary', function( err , content ) {
 
                     should.not.exist(err);
                     content.should.not.be.empty;
+
+                    done();
+
+                });
+
+            });
+
+            it('should create a eot file', function(done){
+
+                fs.readFile( fontPath + '/' + fontFile.replace( /\.woff$/g , '.eot' ) , 'binary', function( err , content ) {
+
+                    should.not.exist(err);
+                    content.should.not.be.empty;
+
+                    done();
+
+                });
+
+            });
+
+            it('should create a css file', function(done) {
+
+                fs.readFile( fontPath + '/' + fontFile.replace( /\.woff$/g , '.css' ) , 'utf8', function( err , content ) {
+
+                    should.not.exist(err);
+                    content.should.not.be.empty;
+                    content.should.match(/^\@font\-face/g);
+
+                    done();
+
+                });
+
+            });
+
+            it('should create a svg file', function(done) {
+
+                fs.readFile( fontPath + '/' + fontFile.replace( /\.woff$/g , '.svg' ) , 'utf8', function( err , content ) {
+
+                    should.not.exist(err);
+                    content.should.not.be.empty;
+                    content.should.match(/^\<\?xml/g);
 
                     done();
 
@@ -163,7 +203,11 @@ describe('FTPM Client', function() {
             var fontFile = 'Magra.woff';
 
             after(function(done) {
-                fs.unlink( fontFile , done );
+                fs.unlinkSync( 'Magra.ttf' );
+                fs.unlinkSync( 'Magra.eot' );
+                fs.unlinkSync( 'Magra.svg' );
+                fs.unlinkSync( 'Magra.css' );
+                fs.unlink( 'Magra.woff' , done );
             });
 
             it('should download', function(done) {
@@ -179,12 +223,53 @@ describe('FTPM Client', function() {
 
             });
 
-            it('should exist the downloaded file', function(done){
+            it('should download a woff file', function(done){
 
                 fs.readFile( fontFile , 'binary', function( err , content ) {
 
                     should.not.exist(err);
                     content.should.not.be.empty;
+
+                    done();
+
+                });
+
+            });
+
+            it('should download a eot file', function(done){
+
+                fs.readFile( fontFile.replace( /\.woff$/g , '.eot' ) , 'binary', function( err , content ) {
+
+                    should.not.exist(err);
+                    content.should.not.be.empty;
+
+                    done();
+
+                });
+
+            });
+
+            it('should create a css file', function(done) {
+
+                fs.readFile( fontFile.replace( /\.woff$/g , '.css' ) , 'utf8', function( err , content ) {
+
+                    should.not.exist(err);
+                    content.should.not.be.empty;
+                    content.should.match(/^\@font\-face/g);
+
+                    done();
+
+                });
+
+            });
+
+            it('should create a svg file', function(done) {
+
+                fs.readFile( fontFile.replace( /\.woff$/g , '.svg' ) , 'utf8', function( err , content ) {
+
+                    should.not.exist(err);
+                    content.should.not.be.empty;
+                    content.should.match(/^\<\?xml/g);
 
                     done();
 
@@ -209,9 +294,7 @@ describe('FTPM Client', function() {
                 describe('with output path', function() {
 
                     after(function(done) {
-                        fs.unlink( cssPath + '/' + cssFile , function() {
-                            fs.rmdir( cssPath , done );
-                        });
+                        wrench.rmdirRecursive( cssPath , done );
                     });
 
                     it('should download', function(done) {
@@ -285,9 +368,7 @@ describe('FTPM Client', function() {
                 describe('with output path', function() {
 
                     after(function(done) {
-                        fs.unlink( cssPath + '/' + cssFile , function() {
-                            fs.rmdir( cssPath , done );
-                        });
+                        wrench.rmdirRecursive( cssPath , done );
                     });
 
                     it('should download', function(done) {
