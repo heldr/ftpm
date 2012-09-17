@@ -6,6 +6,6 @@ GRUNT         = node_modules/grunt/bin/grunt
 install:
 	$(NPM) install $(INSTALL_FLAGS) ftpm
 
-tests:
+test:
 	@echo "Running test suite..."
 	@$(GRUNT)
