@@ -1,7 +1,7 @@
-var should = require('should'),
+var should  = require('should'),
     WebFont = require('../../lib/driver/webfont.js'),
-    fs = require('fs'),
-    wrench = require('wrench');
+    fs      = require('fs'),
+    wrench  = require('wrench');
 
 describe('WebFont object', function() {
 

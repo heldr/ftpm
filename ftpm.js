@@ -61,7 +61,7 @@ ftpm.on('webfont', function( action , fontName ) {
     fontDriver.download( fontName , process.argv[4] , function( err , output ){
 
         ftpm.emit( 'checkError' , err );
-        ftpm.emit( 'exitMessage' , ftpm.log.success , 'new webfont: ' + output );
+        ftpm.emit( 'exitMessage' , ftpm.log.success , 'Crossbrowser fonts were successfully created' );
 
     });
 
