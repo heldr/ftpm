@@ -95,8 +95,8 @@ $ make test
 You can run separated tasks:
 
 ```CLI
-$ grunt lint
-$ grunt mocha
+$ make lint
+$ make mocha
 ```
 
 Note: Pull requests are only accepted on development branch

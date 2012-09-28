@@ -11,7 +11,7 @@ module.exports = function( grunt ) {
         },
 
         mocha: {
-            all: {
+            ftpm: {
                 src: 'test/**/*.js',
                 options: {
                     globals: ['should'],
