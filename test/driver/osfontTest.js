@@ -1,6 +1,24 @@
 var should = require('should'),
+    events = require('events'),
+    _      = require('lodash'),
     OsFont = require('../../lib/driver/osfont.js'),
     fs     = require('fs');
+
+// mock stdin of process 'https://github.com/visionmedia/commander.js/blob/master/test/test.prompt.js'
+    var _stdin = new events.EventEmitter();
+    _.extend( _stdin , process.stdin );
+    _stdin.setEncoding = _stdin.resume = function() {};
+    _stdin.write = function(data) { _stdin.emit('data', data); };
+
+    process.__defineGetter__('stdin', function() { return _stdin });
+
+    //mock stdout of process
+    var _stdout = new events.EventEmitter();
+    _.extend( _stdout , process.stdout );
+    _stdout.write = function(data) { this.emit('data', data) };
+    // //var realOut = process.stdout;
+    //process.__defineGetter__('stdout', function() { return _stdout });
+// mock
 
 describe('OSFont Object', function(){
 
@@ -59,6 +77,8 @@ describe('OSFont Object', function(){
                 });
 
             });
+
+            process.stdout.write('Y');
 
         });
 
