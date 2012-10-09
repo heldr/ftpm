@@ -82,12 +82,11 @@ $ ftpm datauri magra -s #once you have enough scrollback on your terminal :)
 
 DEVELOPING
 ----------
-FTPM uses [Grunt][grunt] with JSHint and [Mocha Test Framework][mocha].
+FTPM uses [Node JSHint][jshint] and [Mocha Test Framework][mocha].
 
 Into FTPM base files directory you should run:
 
 ```CLI
-$ git checkout development
 $ make install
 $ make test
 ```
@@ -99,8 +98,6 @@ $ make lint
 $ make mocha
 ```
 
-Note: Pull requests are only accepted on development branch
-
 ## License
 
 MIT License
@@ -108,5 +105,5 @@ MIT License
 
 [nodejs]: http://nodejs.org/download
 [gwebfonts]: http://www.google.com/webfonts/
-[grunt]: https://github.com/cowboy/grunt
+[jshint]: https://github.com/jshint/node-jshint
 [mocha]: http://visionmedia.github.com/mocha/
