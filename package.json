@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "lodash": "~1.2.0",
-    "request": "~2.16.6",
+    "request": "~2.20.0",
     "colors": "~0.6.0-1",
     "wrench": "~1.4.4",
     "commander": "~1.1.1"
