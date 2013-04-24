@@ -15,9 +15,9 @@ var ftpm = require('./lib/ftpm'),
     showContent = false,
     force = false;
 
-ftpm.on('exitMessage', function( log , msg ) {
+ftpm.on('exitMessage', function( type , msg ) {
 
-    log(msg);
+    this.log[type](msg);
     process.exit();
 
 });
@@ -25,7 +25,7 @@ ftpm.on('exitMessage', function( log , msg ) {
 ftpm.on('exitWithAdvice', function( text ) {
 
     this.log.warn( text );
-    this.emit( 'exitMessage' , this.log.info , 'Type ftpm -h to get some help :)' );
+    this.emit( 'exitMessage' , 'info' , 'Type ftpm -h to get some help :)' );
 
 });
 
@@ -33,7 +33,7 @@ ftpm.on('checkError', function(err) {
 
     if (err) {
         this.log.error('Unexpected error:');
-        this.emit( 'exitMessage' , ftpm.log.error , err );
+        this.emit( 'exitMessage' , 'error' , err );
     }
 
 });
@@ -49,9 +49,9 @@ ftpm.on('osfont', function( action , fontName ) {
         ftpm.emit( 'checkError' , err );
 
         if(fontName) {
-            ftpm.emit( 'exitMessage' , ftpm.log.success , fontName + ' Font was successfully ' + action + 'ed' );
+            ftpm.emit( 'exitMessage' , 'success' , fontName + ' Font was successfully ' + action + 'ed' );
         } else if(results) {
-            ftpm.emit( 'exitMessage' , ftpm.log.info , '\n' + results );
+            ftpm.emit( 'exitMessage' , 'info' , '\n' + results );
         }
 
     });
@@ -63,7 +63,7 @@ ftpm.on('webfont', function( action , fontName ) {
     fontDriver.download( fontName , process.argv[4] , function( err , output ){
 
         ftpm.emit( 'checkError' , err );
-        ftpm.emit( 'exitMessage' , ftpm.log.success , 'new webfont: ' + output );
+        ftpm.emit( 'exitMessage' , 'success' , 'new webfont: ' + output );
 
     });
 
@@ -83,7 +83,7 @@ ftpm.on('cssfont', function( action , fontName ) {
         fontDriver[ methods[action][0] ]( fontName , output, function( err , output ) {
 
             ftpm.emit( 'checkError' , err );
-            ftpm.emit( 'exitMessage' , ftpm.log.success , action + ' file created: ' + output );
+            ftpm.emit( 'exitMessage' , 'success' , action + ' file created: ' + output );
 
         });
 
@@ -114,7 +114,7 @@ ftpm.cli.version( ftpm.name )
     .option('-f, --force', 'force system font uninstall without message');
 
 ftpm.cli.on('--help', function() {
-    ftpm.emit( 'exitMessage' , ftpm.log.info , ftpm.help() );
+    ftpm.emit( 'exitMessage' , 'info' , ftpm.help() );
 });
 
 ftpm.cli.on('show', function() {
