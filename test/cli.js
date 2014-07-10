@@ -82,7 +82,7 @@ describe('FTPM Client', function() {
 
                 should.not.exist(err);
                 stdout.should.not.be.empty;
-                stdout.should.match( /(magra)/gi );
+                stdout.should.match( /(Magra)/gi );
 
                 done();
 

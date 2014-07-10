@@ -34,9 +34,8 @@ describe('OSFont Object', function(){
         it('should list all installed font', function(done) {
 
             OsFont.local( '', function( err , fonts ) {
-
                 should.not.exist(err);
-                fonts.should.be.a('string');
+                fonts.should.startWith('Magra');
                 fonts.should.not.be.empty;
 
                 done();
@@ -96,7 +95,7 @@ describe('OSFont Object', function(){
             OsFont.local( '', function( err , fonts ) {
 
                 should.not.exist(err);
-                fonts.should.be.a('string');
+                fonts.should.startWith('DroidSans');
                 fonts.should.not.be.empty;
 
                 done();

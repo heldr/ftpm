@@ -55,7 +55,7 @@ describe('OS Path',function() {
 
             OSpath.checkFontPath( fakePath , function(path) {
 
-                path.should.be.a('string');
+                path.should.equal(fakePath);
                 path.should.be.empty;
 
                 done();

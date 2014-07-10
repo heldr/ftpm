@@ -12,8 +12,11 @@
 
 var ftpm = require('./lib/ftpm'),
     fontDriver = './lib/driver/',
+    existsSync  = require('fs').existsSync || require('path').existsSync,
     showContent = false,
     force = false;
+
+require('./lib/utils/string');
 
 ftpm.on('exitMessage', function( type , msg ) {
 
@@ -130,7 +133,7 @@ if( process.argv.length > 2 ) {
     ftpm.cli.parse( process.argv );
 
     var action = process.argv[2],
-        fontName = process.argv[3];
+        fontName = process.argv[3] || '';
 
     if ( fontName || action === 'local' ) {
 
@@ -142,16 +145,18 @@ if( process.argv.length > 2 ) {
             break;
 
             case 'uninstall':
-                if (!force) {
-                    ftpm.cli.confirm('Are you sure to uninstall ' + fontName + ' ? (Y/N) ', function(ok) {
-                        if (ok) {
-                            ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
-                        } else {
-                            process.exit();
-                        }
-                    });
-                } else {
-                    ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
+                if (existsSync(ftpm.path.getFontPath(ftpm.platform) + fontName.removeSpaces() + '.ftpm.ttf')) {
+                    if (!force) {
+                        ftpm.prompt.confirm('Are you sure to uninstall ' + fontName + ' ? (Y/N) ', function(err, ok) {
+                            if (!err && ok) {
+                                ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
+                            } else {
+                                process.exit();
+                            }
+                        });
+                    } else {
+                        ftpm.emit( 'runDriver' , 'osfont' , 'uninstall' , fontName );
+                    }
                 }
             break;
 

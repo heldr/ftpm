@@ -61,7 +61,7 @@ describe('File utils', function() {
         });
 
         it('should return http status 200', function() {
-            response.should.have.status(200);
+            response.should.have.property('statusCode', 200);
         });
 
         it('should write a file', function(done) {

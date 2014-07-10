@@ -11,7 +11,8 @@
     "request": "~2.20.0",
     "colors": "~0.6.0-1",
     "wrench": "~1.4.4",
-    "commander": "~1.1.1"
+    "commander": "~1.1.1",
+    "promptly": "~0.2.0"
   },
   "bin": {
     "ftpm": "./ftpm.js"
@@ -22,7 +23,7 @@
   "preferGlobal": true,
   "devDependencies": {
     "mocha": "*",
-    "should": "*",
+    "should": "~4.0.4",
     "jshint": "*"
   },
   "scripts": {
