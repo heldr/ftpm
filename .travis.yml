@@ -1,6 +1,6 @@
 before_install:
-  - npm update -g
   - npm install -g npm
+  - npm -v
 language: node_js
 node_js:
   - "0.10"

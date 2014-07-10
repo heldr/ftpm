@@ -145,6 +145,8 @@ if( process.argv.length > 2 ) {
             break;
 
             case 'uninstall':
+                fontName = fontName.toTitleCase();
+
                 if (existsSync(ftpm.path.getFontPath(ftpm.platform) + fontName.removeSpaces() + '.ftpm.ttf')) {
                     if (!force) {
                         ftpm.prompt.confirm('Are you sure to uninstall ' + fontName + ' ? (Y/N) ', function(err, ok) {
