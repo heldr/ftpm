@@ -24,7 +24,7 @@
   "devDependencies": {
     "mocha": "*",
     "should": "~4.0.4",
-    "jshint": "*"
+    "jshint": "2.4.4"
   },
   "scripts": {
     "test": "make test"
