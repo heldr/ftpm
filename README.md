@@ -1,5 +1,5 @@
 # [DEPRECATED] FTPM
-**See more alternatives: ** [homebrew-fonts](https://github.com/caskroom/homebrew-fonts), [web font search](https://www.npmjs.com/search?q=web+font).
+**See more alternatives:** [homebrew-fonts](https://github.com/caskroom/homebrew-fonts), [web font search](https://www.npmjs.com/search?q=web+font).
 
 Although FTPM was an awesome learning tool that helped to improve my node.js knowledge. I hardly decided to deprecate this project since itself code base has turned legacy and It does not worth to adapt it for current front-end well-known workflows(gulp, grunt, yeoman, bower...etc). Please **feel free to fork, copy, change and share codes** throughout this repository.
 
